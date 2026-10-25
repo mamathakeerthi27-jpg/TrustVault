@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | TrustVault</title>
+    <style>
+        body{margin:0;background:#080d0b;color:#f3f7f4;font-family:Arial,sans-serif;display:grid;place-items:center;min-height:100vh}
+        .card{width:min(380px,85%);padding:30px;background:#101a15;border:1px solid #263d30;border-radius:14px}
+        h1{color:#34d399}label{display:block;margin-top:18px}
+        input{box-sizing:border-box;width:100%;padding:12px;margin-top:7px;background:#080d0b;color:white;border:1px solid #365344;border-radius:6px}
+        button{width:100%;padding:13px;margin-top:24px;background:#34d399;border:0;border-radius:6px;font-weight:bold;cursor:pointer}
+        a{color:#34d399}.message{padding:10px;background:#1c3025;margin:10px 0;border-radius:5px}
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>Welcome Back</h1>
+    <p>Sign in to your TrustVault account.</p>
+
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+        <div class="message">{{ message }}</div>
+    {% endfor %}
+
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label>Email Address</label>
+        <input type="email" name="email" required autocomplete="email">
+
+        <label>Password</label>
+        <input type="password" name="password" required autocomplete="current-password">
+
+        <button type="submit">Sign In</button>
+    </form>
+
+    <p>New to TrustVault? <a href="/register">Create an account</a></p>
+    <p><a href="/">Back to Home</a></p>
+</div>
+</body>
+</html>

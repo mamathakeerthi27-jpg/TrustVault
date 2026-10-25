@@ -1,0 +1,17 @@
+﻿.venv/
+**/.venv/
+__pycache__/
+**/__pycache__/
+.env
+.env.*
+!.env.example
+instance/
+**/instance/
+uploads/
+**/uploads/
+*.db
+*.sqlite
+*.sqlite3
+**/node_modules/
+**/dist/
+.vscode/

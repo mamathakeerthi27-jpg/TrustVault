@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Upload Document | TrustVault</title>
+    <style>
+        *{box-sizing:border-box}
+        body{margin:0;background:#080d0b;color:#f3f7f4;font-family:Arial,sans-serif}
+        nav{padding:20px 7%;border-bottom:1px solid #263d30;display:flex;justify-content:space-between}
+        a{color:#34d399}
+        .card{max-width:600px;margin:60px auto;padding:30px;background:#101a15;border:1px solid #263d30;border-radius:14px}
+        h1{color:#34d399}
+        label{display:block;margin-top:20px}
+        input,select{width:100%;padding:12px;margin-top:8px;background:#080d0b;color:white;border:1px solid #365344;border-radius:6px}
+        button{margin-top:25px;padding:13px 20px;background:#34d399;color:#062017;border:0;border-radius:6px;font-weight:bold;cursor:pointer}
+        .message{padding:12px;background:#1c3025;border-radius:6px;margin:12px 0}
+        .hint{color:#b7c9bf;font-size:14px;line-height:1.6}
+    </style>
+</head>
+<body>
+<nav>
+    <strong>TrustVault.</strong>
+    <a href="/dashboard">Dashboard</a>
+</nav>
+
+<div class="card">
+    <h1>Upload Document</h1>
+    <p class="hint">Store your confidential documents securely.</p>
+
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+        <div class="message">{{ message }}</div>
+    {% endfor %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <label>Document Title</label>
+        <input type="text" name="title" maxlength="200"
+               placeholder="e.g. Employment Contract">
+
+        <label>Category</label>
+        <select name="category">
+            <option value="General">General</option>
+            <option value="Work">Work</option>
+            <option value="Finance">Finance</option>
+            <option value="Legal">Legal</option>
+            <option value="Personal">Personal</option>
+        </select>
+
+        <label>Select File</label>
+        <input type="file" name="document"
+               accept=".pdf,.docx,.txt,.png,.jpg,.jpeg" required>
+
+        <p class="hint">Allowed formats: PDF, DOCX, TXT, PNG, JPG. Maximum size: 10 MB.</p>
+
+        <button type="submit">Upload Securely</button>
+    </form>
+
+    <p><a href="/my-documents">View My Documents</a></p>
+</div>
+</body>
+</html>

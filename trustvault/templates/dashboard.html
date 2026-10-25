@@ -1,0 +1,112 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard | TrustVault</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: #080d0b;
+            color: #f3f7f4;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            padding: 18px 5%;
+            border-bottom: 1px solid #263d30;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo, h1 { color: #34d399; }
+
+        .content {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .panel, .nav-card {
+            background: #101a15;
+            border: 1px solid #263d30;
+            padding: 24px;
+            border-radius: 12px;
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 28px 0;
+        }
+
+        .nav-card {
+            text-decoration: none;
+            color: #f3f7f4;
+            transition: border-color 0.2s;
+        }
+
+        .nav-card:hover { border-color: #34d399; }
+
+        .nav-card h3 { color: #34d399; }
+
+        button {
+            background: #34d399;
+            color: #07100b;
+            border: 0;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        a { color: #34d399; }
+
+        .muted { color: #b8c9bf; }
+    </style>
+</head>
+
+<body>
+<nav>
+    <strong class="logo">TrustVault.</strong>
+
+    <form method="POST" action="{{ url_for('auth.logout') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <button type="submit">Logout</button>
+    </form>
+</nav>
+
+<div class="content">
+    <h1>Welcome, {{ user.name }}!</h1>
+    <p class="muted">Your secure document workspace.</p>
+
+    <h2>Document Management</h2>
+
+    <div class="menu">
+        <a class="nav-card" href="{{ url_for('auth.my_documents') }}">
+            <h3>My Documents</h3>
+            <p>View, download and manage your documents.</p>
+        </a>
+
+        <a class="nav-card" href="{{ url_for('auth.upload_document') }}">
+            <h3>Upload Document</h3>
+            <p>Upload a new document securely.</p>
+        </a>
+    </div>
+
+    <div class="panel">
+        <h2>Account Information</h2>
+        <p><strong>Name:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Role:</strong> {{ user.role|title }}</p>
+    </div>
+</div>
+</body>
+</html>
+```
