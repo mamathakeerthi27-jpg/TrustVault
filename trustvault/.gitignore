@@ -35,3 +35,4 @@ dist/
 
 # Nested Git backup
 .git-inner-backup/
+trustvault/templates/MASTER_PROMPT.md

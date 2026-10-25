@@ -15,3 +15,5 @@ uploads/
 **/node_modules/
 **/dist/
 .vscode/
+
+trustvault/templates/MASTER_PROMPT.md
